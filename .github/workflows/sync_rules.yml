@@ -1,0 +1,31 @@
+name: Sync & Validate Detection Rules
+
+on:
+  schedule:
+    - cron: '0 4 1,15 * *' # 1st and 15th of every month at 04:00 UTC (US/UK night)
+  workflow_dispatch:      # Manual trigger via GitHub Web UI
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Rule Synchronizer & Validator
+        env:
+          UPSTREAM_CONFIG_URL: ${{ secrets.UPSTREAM_CONFIG_URL }}
+        run: python scripts/sync_rules.py
+
+      - name: Commit and Push Updates
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(rules): update detection definitions [skip ci]"
+          file_pattern: "rules/rules.json"

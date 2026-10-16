@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "last_checked_epoch": 1792152583276,
+  "last_updated_epoch": 1792092286008,
+  "stale_after_days": 30,
+  "apps": [
+    {
+      "package_name": "com.google.android.youtube",
+      "feature": "shorts",
+      "version": 1,
+      "positive_rules": {
+        "view_ids": [
+          "com.google.android.youtube:id/reel_player_page_container",
+          "com.google.android.youtube:id/reel_progress_bar",
+          "com.google.android.youtube:id/reel_recycler"
+        ],
+        "content_descriptions": []
+      },
+      "negative_rules": {
+        "view_ids": [
+          "com.google.android.youtube:id/immersive_live_player",
+          "com.google.android.youtube:id/live_chat_content",
+          "com.google.android.youtube:id/live_chat_text_field_bar"
+        ],
+        "texts": [
+          "Live chat",
+          "Video player"
+        ]
+      }
+    },
+    {
+      "package_name": "com.instagram.android",
+      "feature": "reels",
+      "version": 1,
+      "positive_rules": {
+        "view_ids": [
+          "com.instagram.android:id/clips_video_container",
+          "com.instagram.android:id/clips_viewer_camera_button",
+          "com.instagram.android:id/clips_viewer_view_pager",
+          "com.instagram.android:id/reels_touchable_background"
+        ],
+        "content_descriptions": []
+      },
+      "negative_rules": {
+        "view_ids": [
+          "com.instagram.android:id/layout_comment_thread_edittext",
+          "com.instagram.android:id/row_comment_container"
+        ],
+        "texts": []
+      },
+      "dm_exemption": {
+        "required_view_ids": [
+          "com.instagram.android:id/sender_username_or_fullname",
+          "com.instagram.android:id/reply_bar_edittext"
+        ],
+        "forbidden_view_ids": [
+          "com.instagram.android:id/suggested_title"
+        ]
+      }
+    }
+  ]
+}
